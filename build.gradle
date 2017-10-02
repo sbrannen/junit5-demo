@@ -1,0 +1,76 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.0.M4'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "http://repo.spring.io/snapshot" }
+		maven { url "http://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
+	}
+}
+
+plugins {
+	id 'io.spring.dependency-management' version '1.0.3.RELEASE'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+jar {
+	baseName = 'junit5-demo'
+	version = '1.0.0-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext.assertJVersion         = '3.8.0'
+ext.junitJupiterVersion    = '5.0.0'
+ext.junitPlatformVersion   = '1.0.0'
+ext.lombokVersion          = '1.16.18'
+ext.springBootVersion      = '2.0.0.M4'
+
+// Special syntax for overriding spring-boot-dependencies
+ext['spring.version']          = '5.0.0.RELEASE'
+
+repositories {
+	// mavenLocal()
+	mavenCentral()
+	maven { url "http://repo.spring.io/snapshot" }
+	maven { url "http://repo.spring.io/milestone" }
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter")
+
+	compileOnly("org.projectlombok:lombok:${lombokVersion}")
+
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+	testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+	testCompile("org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}")
+	testCompile("org.junit.jupiter:junit-jupiter-migrationsupport:${junitJupiterVersion}")
+	testCompile("org.junit.platform:junit-platform-runner:${junitPlatformVersion}")
+	testCompile("org.assertj:assertj-core:${assertJVersion}")
+
+	testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+}
+
+junitPlatform {
+	details 'tree'
+	// Do NOT run JUnit 4 tests with the standard Gradle test task.
+	enableStandardTestTask false
+	// Only run JUnit Jupiter tests with the JUnit Platform
+	filters.engines.include 'junit-jupiter'
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '4.2'
+}
