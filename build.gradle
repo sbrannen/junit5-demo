@@ -35,6 +35,7 @@ targetCompatibility = 1.8
 ext.assertJVersion         = '3.8.0'
 ext.junitJupiterVersion    = '5.0.0'
 ext.junitPlatformVersion   = '1.0.0'
+ext.junitVintageVersion    = '4.12.0'
 ext.lombokVersion          = '1.16.18'
 ext.springBootVersion      = '2.0.0.M4'
 
@@ -61,14 +62,15 @@ dependencies {
 	testCompile("org.assertj:assertj-core:${assertJVersion}")
 
 	testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+	testRuntime("org.junit.vintage:junit-vintage-engine:${junitVintageVersion}")
 }
 
 junitPlatform {
 	details 'tree'
 	// Do NOT run JUnit 4 tests with the standard Gradle test task.
-	enableStandardTestTask false
+	// enableStandardTestTask false
 	// Only run JUnit Jupiter tests with the JUnit Platform
-	filters.engines.include 'junit-jupiter'
+	// filters.engines.include 'junit-jupiter'
 }
 
 task wrapper(type: Wrapper) {
