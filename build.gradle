@@ -54,6 +54,9 @@ dependencies {
 
 	compileOnly("org.projectlombok:lombok:${lombokVersion}")
 
+	// To avoid compiler warnings about @API annotations in JUnit code
+	testCompileOnly('org.apiguardian:apiguardian-api:1.0.0')
+
 	testCompile("org.springframework.boot:spring-boot-starter-test")
 	testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
 	testCompile("org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}")
