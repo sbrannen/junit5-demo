@@ -48,8 +48,8 @@ class JUnitJupiterCalculatorTests {
 	@DisplayName("Ensure Fibonacci computation is 'fast enough'")
 	void fibonacci() {
 		// f(42) - f(45) will likely take longer than 1000 ms.
-		// assertTimeout(ofMillis(1000), () -> calculator.fibonacci(42));
-		assertTimeoutPreemptively(ofMillis(1000), () -> calculator.fibonacci(42));
+		// assertTimeout(ofMillis(1000), () -> calculator.fibonacci(30));
+		assertTimeoutPreemptively(ofMillis(1000), () -> calculator.fibonacci(30));
 	}
 
 }
