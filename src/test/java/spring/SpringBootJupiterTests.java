@@ -1,0 +1,6 @@
+
+package spring;
+
+class SpringBootJupiterTests {
+
+}
