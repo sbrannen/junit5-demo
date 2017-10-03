@@ -1,10 +1,8 @@
 
 package working;
 
-import static java.time.Duration.ofMillis;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
+import static java.time.Duration.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,8 +47,9 @@ class JUnitJupiterCalculatorTests {
 	@Test
 	@DisplayName("Ensure Fibonacci computation is 'fast enough'")
 	void fibonacci() {
-		// assertTimeout(ofMillis(1000), () -> calculator.fibonacci(10));
-		assertTimeoutPreemptively(ofMillis(1000), () -> calculator.fibonacci(10));
+		// f(42) - f(45) will likely take longer than 1000 ms.
+		// assertTimeout(ofMillis(1000), () -> calculator.fibonacci(42));
+		assertTimeoutPreemptively(ofMillis(1000), () -> calculator.fibonacci(42));
 	}
 
 }

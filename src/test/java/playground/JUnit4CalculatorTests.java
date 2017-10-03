@@ -1,7 +1,7 @@
 
 package playground;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -53,7 +53,8 @@ public class JUnit4CalculatorTests {
 	// @Test(timeout = 1000)
 	// Ensure Fibonacci computation is 'fast enough'
 	public void fibonacci() {
-		calculator.fibonacci(10);
+		// f(42) - f(45) will likely take longer than 1000 ms.
+		calculator.fibonacci(30);
 	}
 
 }

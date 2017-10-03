@@ -35,17 +35,7 @@ public class Calculator {
 		else if (n == 1) {
 			return 1;
 		}
-		takeNap();
 		return fibonacci(n - 1) + fibonacci(n - 2);
-	}
-
-	private void takeNap() {
-		try {
-			Thread.sleep(1);
-		}
-		catch (InterruptedException e) {
-			/* ignore */
-		}
 	}
 
 }
