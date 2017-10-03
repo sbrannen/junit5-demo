@@ -1,14 +1,23 @@
 
 package spring;
 
+import demo.Cat;
+
 class SpringJupiterTests {
 
-	// primaryCat
+	final Cat primaryCat;
 
-	// cats
+	SpringJupiterTests(Cat primaryCat) {
+		this.primaryCat = primaryCat;
+	}
 
-	// @EnabledOnMac
+	void primaryCat() {
+	}
 
-	// @DisabledOnMac
+	void qualifiedCat() {
+	}
+
+	void cats() {
+	}
 
 }

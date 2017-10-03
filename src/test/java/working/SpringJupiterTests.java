@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import demo.Cat;
@@ -19,15 +20,27 @@ import spring.TestConfig;
 @SpringJUnitConfig(TestConfig.class)
 class SpringJupiterTests {
 
+	private final Cat primaryCat;
+
+	@Autowired
+	SpringJupiterTests(Cat primaryCat) {
+		this.primaryCat = primaryCat;
+	}
+
 	@Test
 	@EnabledOnMac
-	void primaryCat(@Autowired Cat cat) throws Exception {
-		assertEquals("Catbert", cat.getName());
+	void primaryCat() {
+		assertEquals("Catbert", this.primaryCat.getName());
 	}
 
 	@Test
 	@DisabledOnMac
-	void cats(@Autowired List<Cat> cats) throws Exception {
+	void qualifiedCat(@Qualifier("garfield") Cat cat) {
+		assertEquals("Garfield", cat.getName());
+	}
+
+	@Test
+	void cats(@Autowired List<Cat> cats) {
 		assertEquals(asList("Catbert", "Garfield"), cats.stream().map(Cat::getName).collect(toList()));
 	}
 
