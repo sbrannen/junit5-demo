@@ -40,7 +40,7 @@ ext.lombokVersion          = '1.16.18'
 ext.springBootVersion      = '2.0.0.M4'
 
 // Special syntax for overriding spring-boot-dependencies
-ext['spring.version']          = '5.0.0.RELEASE'
+ext['spring.version'] = '5.0.0.RELEASE'
 
 repositories {
 	// mavenLocal()
