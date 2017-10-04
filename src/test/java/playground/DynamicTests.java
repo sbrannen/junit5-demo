@@ -5,4 +5,6 @@ class DynamicTests {
 
 	// firstTenEvenIntegers
 
+	// strings
+
 }
