@@ -6,8 +6,10 @@ In addition, demos are provided for using the _Spring TestContext Framework_ fro
 
 The following highlight the technologies used.
 
-* JUnit 5.0.1
-* JUnit 4.12 (for comparison with JUnit Jupiter)
+* JUnit Platform 1.0.1
+* JUnit Jupiter 5.0.1
+* JUnit Vintage 4.12.1
+  * Including JUnit 4.12 (for comparison with JUnit Jupiter)
 * Spring Framework 5.0 GA
 * Spring Boot 2.0 M4
 * Gradle
