@@ -40,6 +40,7 @@ import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
 import org.junit.jupiter.api.extension.ExtensionContext.Store;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolver;
+import org.junit.platform.commons.support.ReflectionSupport;
 
 /**
  * {@code @CaptureSystemOutput} is a JUnit JUpiter extension for capturing
@@ -113,8 +114,12 @@ public @interface CaptureSystemOutput {
 		}
 
 		private OutputCapture getOutputCapture(ExtensionContext context) {
-			return getStore(context).getOrComputeIfAbsent(OutputCapture.class, k -> new OutputCapture(),
-				OutputCapture.class);
+			return getOrComputeIfAbsent(getStore(context), OutputCapture.class);
+		}
+
+		private <V> V getOrComputeIfAbsent(Store store, Class<V> requiredType) {
+			return store.getOrComputeIfAbsent(requiredType, k -> ReflectionSupport.newInstance(requiredType),
+				requiredType);
 		}
 
 		private Store getStore(ExtensionContext context) {
