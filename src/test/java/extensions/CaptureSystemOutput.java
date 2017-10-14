@@ -103,8 +103,8 @@ public @interface CaptureSystemOutput {
 		@Override
 		public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) {
 			boolean isTestMethodLevel = extensionContext.getTestMethod().isPresent();
-			boolean isListener = parameterContext.getParameter().getType() == OutputCapture.class;
-			return isTestMethodLevel && isListener;
+			boolean isOutputCapture = parameterContext.getParameter().getType() == OutputCapture.class;
+			return isTestMethodLevel && isOutputCapture;
 		}
 
 		@Override
