@@ -12,11 +12,17 @@ gradle-app.setting
 /bin/
 
 # IntelliJ
-.idea
-spring-events.iml
+*.iml
+*.ipr
+*.iws
+*.uml
+.idea/
+*/out/*
 
 # TestNG
 /test-output/
 
 # Misc
 *.log
+out
+.metadata
