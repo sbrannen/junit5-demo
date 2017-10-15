@@ -194,6 +194,10 @@ public @interface CaptureSystemOutput {
 				this.copy = copy;
 			}
 
+			PrintStream getOriginal() {
+				return this.original;
+			}
+
 			@Override
 			public void write(int b) throws IOException {
 				this.copy.write(b);
@@ -210,10 +214,6 @@ public @interface CaptureSystemOutput {
 			public void write(byte[] b, int off, int len) throws IOException {
 				this.copy.write(b, off, len);
 				this.original.write(b, off, len);
-			}
-
-			public PrintStream getOriginal() {
-				return this.original;
 			}
 
 			@Override
