@@ -117,9 +117,8 @@ public @interface CaptureSystemOutput {
 			return getOrComputeIfAbsent(getStore(context), OutputCapture.class);
 		}
 
-		private <V> V getOrComputeIfAbsent(Store store, Class<V> requiredType) {
-			return store.getOrComputeIfAbsent(requiredType, k -> ReflectionSupport.newInstance(requiredType),
-				requiredType);
+		private <V> V getOrComputeIfAbsent(Store store, Class<V> type) {
+			return store.getOrComputeIfAbsent(type, ReflectionSupport::newInstance, type);
 		}
 
 		private Store getStore(ExtensionContext context) {
