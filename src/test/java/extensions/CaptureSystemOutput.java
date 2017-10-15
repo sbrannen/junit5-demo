@@ -19,6 +19,7 @@ package extensions;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
 
 import java.io.ByteArrayOutputStream;
@@ -31,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hamcrest.Matcher;
-import org.junit.Assert;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -93,7 +93,7 @@ public @interface CaptureSystemOutput {
 			try {
 				if (!outputCapture.matchers.isEmpty()) {
 					String output = outputCapture.toString();
-					Assert.assertThat(output, allOf(outputCapture.matchers));
+					assertThat(output, allOf(outputCapture.matchers));
 				}
 			}
 			finally {
