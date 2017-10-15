@@ -129,8 +129,20 @@ public @interface CaptureSystemOutput {
 	}
 
 	/**
+	 * {@code OutputCapture} captures output to {@code System.out} and {@code System.err}.
+	 * 
+	 * <p>To obtain an instance of {@code OutputCapture}, declare a parameter of type
+	 * {@code OutputCapture} in a JUnit Jupiter {@code @Test}, {@code @BeforeEach},
+	 * or {@code @AfterEach} method.
+	 * 
+	 * <p>{@linkplain #expect Expectations} are supported via Hamcrest matchers.
+	 * 
+	 * <p>To obtain all output to {@code System.out} and {@code System.err}, simply
+	 * invoke {@link #toString()}.
+	 *
 	 * @author Phillip Webb
 	 * @author Andy Wilkinson
+	 * @author Sam Brannen
 	 */
 	static class OutputCapture {
 
@@ -167,7 +179,7 @@ public @interface CaptureSystemOutput {
 		}
 
 		/**
-		 * Verify that the output is matched by the supplied {@code matcher}.
+		 * Verify that the captured output is matched by the supplied {@code matcher}.
 		 *
 		 * <p>Verification is performed after the test method has executed.
 		 *
@@ -177,6 +189,10 @@ public @interface CaptureSystemOutput {
 			this.matchers.add(matcher);
 		}
 
+		/**
+		 * Return all captured output to {@code System.out} and {@code System.err}
+		 * as a single string.
+		 */
 		@Override
 		public String toString() {
 			flush();
