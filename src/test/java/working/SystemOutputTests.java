@@ -17,7 +17,11 @@
 package working;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import extensions.CaptureSystemOutput;
@@ -31,6 +35,23 @@ import extensions.CaptureSystemOutput.OutputCapture;
  */
 @CaptureSystemOutput
 class SystemOutputTests {
+
+	@BeforeEach
+	void beforeEach(OutputCapture outputCapture) {
+		assertFalse(outputCapture.toString().contains("@BeforeEach"));
+
+		System.out.println("@BeforeEach");
+
+		assertTrue(outputCapture.toString().contains("@BeforeEach"));
+	}
+
+	@AfterEach
+	void afterEach(OutputCapture outputCapture) {
+		System.out.println("@AfterEach");
+
+		outputCapture.expect(containsString("@BeforeEach"));
+		outputCapture.expect(containsString("@AfterEach"));
+	}
 
 	@Test
 	void systemOut(OutputCapture outputCapture) {
