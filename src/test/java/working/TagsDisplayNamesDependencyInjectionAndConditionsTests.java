@@ -7,11 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
 import playground.FastTest;
+import spring.DisabledOnMac;
 
-class TagsDisplayNamesAndDependencyInjectionTests {
-
-	// --include-tag fast
-	// --exclude-tag fast
+@DisplayName("Tags, Display Names, DI, and Conditions")
+class TagsDisplayNamesDependencyInjectionAndConditionsTests {
 
 	// @Test
 	// @Tag("fast")
@@ -21,6 +20,9 @@ class TagsDisplayNamesAndDependencyInjectionTests {
 		System.err.println(testInfo);
 	}
 
+	// @Disabled
+	@DisabledOnMac
+	// @EnabledOnMac
 	@Tag("normal")
 	@Test
 	void normalTest() {
