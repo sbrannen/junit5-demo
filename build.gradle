@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.0.M4'
+		springBootVersion = '2.0.0.M5'
 	}
 	repositories {
 		mavenCentral()
@@ -37,10 +37,10 @@ ext.junitJupiterVersion    = '5.0.1'
 ext.junitPlatformVersion   = '1.0.1'
 ext.junitVintageVersion    = '4.12.1'
 ext.lombokVersion          = '1.16.18'
-ext.springBootVersion      = '2.0.0.M4'
+ext.springBootVersion      = '2.0.0.M5'
 
 // Special syntax for overriding spring-boot-dependencies
-ext['spring.version'] = '5.0.0.RELEASE'
+ext['spring.version'] = '5.0.1.RELEASE'
 
 repositories {
 	// mavenLocal()
@@ -77,5 +77,5 @@ junitPlatform {
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '4.2'
+	gradleVersion = '4.3'
 }
