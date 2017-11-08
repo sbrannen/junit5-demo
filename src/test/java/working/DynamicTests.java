@@ -1,15 +1,18 @@
 
 package working;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.DynamicTest.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DynamicNode;
 import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(LoggingExtension.class)
+@ExtendWith(TimingExtension.class)
 class DynamicTests {
 
 	@TestFactory
@@ -20,7 +23,8 @@ class DynamicTests {
 
 	@TestFactory
 	Stream<DynamicNode> strings() {
-		return Stream.of("A", "B", "C").map(str -> dynamicTest("test" + str, () -> assertTrue(str.charAt(0) < 'Z')));
+		return Stream.of("A", "B", "C")//
+				.map(str -> dynamicTest("test" + str, () -> assertTrue(str.charAt(0) < 'Z')));
 	}
 
 }
