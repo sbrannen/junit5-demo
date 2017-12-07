@@ -33,18 +33,18 @@ class SpringBootJupiterTests {
 
 	@Test
 	@EnabledOnMac
-	void primaryCat() throws Exception {
+	void primaryCat() {
 		assertEquals("Catbert", this.primaryCat.getName());
 	}
 
 	@Test
 	@DisabledOnMac
-	void qualifiedCat(@Qualifier("garfield") Cat cat) throws Exception {
+	void qualifiedCat(@Qualifier("garfield") Cat cat) {
 		assertEquals("Garfield", cat.getName());
 	}
 
 	@Test
-	void cats(@Autowired List<Cat> cats) throws Exception {
+	void cats(@Autowired List<Cat> cats) {
 		assertEquals(asList("Catbert", "Garfield"), cats.stream().map(Cat::getName).collect(toList()));
 	}
 
