@@ -9,7 +9,7 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.2'
+		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.3'
 	}
 }
 
@@ -32,9 +32,9 @@ jar {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-ext.assertJVersion         = '3.8.0'
-ext.junitJupiterVersion    = '5.0.2'
-ext.junitPlatformVersion   = '1.0.2'
+ext.assertJVersion         = '3.9.0'
+ext.junitJupiterVersion    = '5.0.3'
+ext.junitPlatformVersion   = '1.0.3'
 ext.junitVintageVersion    = '4.12.2'
 ext.lombokVersion          = '1.16.18'
 ext.springBootVersion      = '2.0.0.M7'
@@ -53,9 +53,6 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter")
 
 	compileOnly("org.projectlombok:lombok:${lombokVersion}")
-
-	// To avoid compiler warnings about @API annotations in JUnit code
-	testCompileOnly('org.apiguardian:apiguardian-api:1.0.0')
 
 	testCompile("org.springframework.boot:spring-boot-starter-test")
 	testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
