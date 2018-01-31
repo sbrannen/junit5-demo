@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.0.M7'
+		springBootVersion = '2.0.0.RC1'
 	}
 	repositories {
 		mavenCentral()
@@ -37,7 +37,7 @@ ext.junitJupiterVersion    = '5.0.3'
 ext.junitPlatformVersion   = '1.0.3'
 ext.junitVintageVersion    = '4.12.2'
 ext.lombokVersion          = '1.16.18'
-ext.springBootVersion      = '2.0.0.M7'
+ext.springBootVersion      = '2.0.0.RC1'
 
 // Special syntax for overriding spring-boot-dependencies
 ext['spring.version'] = '5.0.3.RELEASE'
