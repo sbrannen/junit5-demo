@@ -10,7 +10,7 @@ buildscript {
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.3'
-		classpath 'com.kncept.junit5.reporter:junit-reporter:1.0.2'
+		classpath 'com.kncept.junit5.reporter:junit-reporter:1.0.3'
 	}
 }
 
