@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.0.RC1'
+		springBootVersion = '2.0.0.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -9,13 +9,13 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.3'
+		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
 		classpath 'com.kncept.junit5.reporter:junit-reporter:1.0.3'
 	}
 }
 
 plugins {
-	id 'io.spring.dependency-management' version '1.0.3.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.4.RELEASE'
 }
 
 apply plugin: 'java'
@@ -34,21 +34,21 @@ jar {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-ext.assertJVersion         = '3.9.0'
-ext.junitJupiterVersion    = '5.0.3'
-ext.junitPlatformVersion   = '1.0.3'
-ext.junitVintageVersion    = '4.12.3'
-ext.lombokVersion          = '1.16.18'
-ext.springBootVersion      = '2.0.0.RC1'
+ext.assertJVersion         = '3.9.1'
+ext.junitJupiterVersion    = '5.1.0'
+ext.junitPlatformVersion   = '1.1.0'
+ext.junitVintageVersion    = '5.1.0'
+ext.lombokVersion          = '1.16.20'
+ext.springBootVersion      = '2.0.0.RELEASE'
 
 // Special syntax for overriding spring-boot-dependencies
-ext['spring.version'] = '5.0.3.RELEASE'
+ext['spring.version'] = '5.0.4.RELEASE'
 
 repositories {
 	// mavenLocal()
 	mavenCentral()
-	maven { url "http://repo.spring.io/snapshot" }
-	maven { url "http://repo.spring.io/milestone" }
+	// maven { url "http://repo.spring.io/snapshot" }
+	// maven { url "http://repo.spring.io/milestone" }
 }
 
 dependencies {
@@ -78,5 +78,5 @@ junitPlatform {
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '4.5'
+	gradleVersion = '4.6'
 }
