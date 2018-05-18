@@ -14,35 +14,27 @@ buildscript {
 	}
 }
 
-plugins {
-	id 'io.spring.dependency-management' version '1.0.4.RELEASE'
-}
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.junit.platform.gradle.plugin'
 apply plugin: 'com.kncept.junit5.reporter'
 
-jar {
-	baseName = 'junit5-demo'
-	version = '1.0.0-SNAPSHOT'
-}
+group = 'com.example'
+version = '1.0.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-ext.assertJVersion         = '3.9.1'
 ext.junitJupiterVersion    = '5.2.0'
 ext.junitPlatformVersion   = '1.2.0'
 ext.junitVintageVersion    = '5.2.0'
-ext.lombokVersion          = '1.16.20'
-ext.springBootVersion      = '2.0.2.RELEASE'
 
 // Special syntax for overriding spring-boot-dependencies
-ext['spring.version'] = '5.0.6.RELEASE'
+// ext['spring.version'] = '5.0.6.RELEASE'
 
 repositories {
 	// mavenLocal()
@@ -52,18 +44,16 @@ repositories {
 }
 
 dependencies {
+	compileOnly('org.projectlombok:lombok')
+
 	compile("org.springframework.boot:spring-boot-starter")
 	// compile instead of testCompile since we implement extensions in src/main/java
 	compile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
 
-	compileOnly("org.projectlombok:lombok:${lombokVersion}")
-
 	testCompile("org.springframework.boot:spring-boot-starter-test")
-	// testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
 	testCompile("org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}")
 	testCompile("org.junit.jupiter:junit-jupiter-migrationsupport:${junitJupiterVersion}")
 	testCompile("org.junit.platform:junit-platform-runner:${junitPlatformVersion}")
-	testCompile("org.assertj:assertj-core:${assertJVersion}")
 
 	testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
 	testRuntime("org.junit.vintage:junit-vintage-engine:${junitVintageVersion}")
