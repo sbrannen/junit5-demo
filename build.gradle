@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.0.RELEASE'
+		springBootVersion = '2.0.2.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -9,7 +9,7 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
+		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.2.0'
 		classpath 'com.kncept.junit5.reporter:junit-reporter:1.0.3'
 	}
 }
@@ -35,14 +35,14 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 ext.assertJVersion         = '3.9.1'
-ext.junitJupiterVersion    = '5.1.0'
-ext.junitPlatformVersion   = '1.1.0'
-ext.junitVintageVersion    = '5.1.0'
+ext.junitJupiterVersion    = '5.2.0'
+ext.junitPlatformVersion   = '1.2.0'
+ext.junitVintageVersion    = '5.2.0'
 ext.lombokVersion          = '1.16.20'
-ext.springBootVersion      = '2.0.0.RELEASE'
+ext.springBootVersion      = '2.0.2.RELEASE'
 
 // Special syntax for overriding spring-boot-dependencies
-ext['spring.version'] = '5.0.4.RELEASE'
+ext['spring.version'] = '5.0.6.RELEASE'
 
 repositories {
 	// mavenLocal()
@@ -78,5 +78,5 @@ junitPlatform {
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '4.6'
+	gradleVersion = '4.7'
 }
