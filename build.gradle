@@ -4,13 +4,11 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
-		maven { url "http://repo.spring.io/snapshot" }
-		maven { url "http://repo.spring.io/milestone" }
+		// maven { url "http://repo.spring.io/snapshot" }
+		// maven { url "http://repo.spring.io/milestone" }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.2.0'
-		classpath 'com.kncept.junit5.reporter:junit-reporter:1.0.3'
 	}
 }
 
@@ -20,8 +18,6 @@ apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'org.junit.platform.gradle.plugin'
-apply plugin: 'com.kncept.junit5.reporter'
 
 group = 'com.example'
 version = '1.0.0-SNAPSHOT'
@@ -29,9 +25,11 @@ version = '1.0.0-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-ext.junitJupiterVersion    = '5.2.0'
-ext.junitPlatformVersion   = '1.2.0'
-ext.junitVintageVersion    = '5.2.0'
+ext {
+	junitJupiterVersion    = '5.2.0'
+	junitPlatformVersion   = '1.2.0'
+	junitVintageVersion    = '5.2.0'
+}
 
 // Special syntax for overriding spring-boot-dependencies
 // ext['spring.version'] = '5.0.6.RELEASE'
@@ -59,12 +57,12 @@ dependencies {
 	testRuntime("org.junit.vintage:junit-vintage-engine:${junitVintageVersion}")
 }
 
-junitPlatform {
-	details 'tree'
-	// Do NOT run JUnit 4 tests with the standard Gradle test task.
-	// enableStandardTestTask false
-	// Only run JUnit Jupiter tests with the JUnit Platform
-	// filters.engines.include 'junit-jupiter'
+test {
+	useJUnitPlatform()
+
+	testLogging {
+		events "passed", "skipped", "failed" // "standardOut", "standardError"
+	}
 }
 
 wrapper {
