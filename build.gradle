@@ -35,15 +35,10 @@ ext {
 // ext['spring.version'] = '5.0.6.RELEASE'
 
 repositories {
-	// mavenLocal()
 	mavenCentral()
-	// maven { url "http://repo.spring.io/snapshot" }
-	// maven { url "http://repo.spring.io/milestone" }
 }
 
 dependencies {
-	compileOnly('org.projectlombok:lombok')
-
 	compile("org.springframework.boot:spring-boot-starter")
 	// compile instead of testCompile since we implement extensions in src/main/java
 	compile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
