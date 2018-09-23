@@ -1,27 +1,23 @@
 
-package working;
+package boot;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.condition.OS.MAC;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import demo.Cat;
-import spring.Application;
-import spring.DisabledOnMac;
 import spring.EnabledOnMac;
 
-// @SpringBootTest
-@SpringBootTest(classes = Application.class)
-@ExtendWith(SpringExtension.class)
+@SpringBootTest
 class SpringBootJupiterTests {
 
 	private final Cat primaryCat;
@@ -38,7 +34,8 @@ class SpringBootJupiterTests {
 	}
 
 	@Test
-	@DisabledOnMac
+	// @DisabledOnMac
+	@DisabledOnOs(MAC)
 	void qualifiedCat(@Qualifier("garfield") Cat cat) {
 		assertEquals("Garfield", cat.getName());
 	}
