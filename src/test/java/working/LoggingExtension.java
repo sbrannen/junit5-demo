@@ -11,23 +11,27 @@ public class LoggingExtension
 		implements BeforeAllCallback, AfterAllCallback, BeforeTestExecutionCallback, AfterTestExecutionCallback {
 
 	@Override
-	public void beforeTestExecution(ExtensionContext context) throws Exception {
-		System.out.println("Before test execution: " + context.getRequiredTestMethod().getName());
-	}
-
-	@Override
-	public void afterTestExecution(ExtensionContext context) throws Exception {
-		System.out.println("After test execution: " + context.getRequiredTestMethod().getName());
-	}
-
-	@Override
 	public void beforeAll(ExtensionContext context) throws Exception {
-		System.out.println("Before all: " + context.getRequiredTestClass().getName());
+		print("Before all: " + context.getRequiredTestClass().getName());
 	}
 
 	@Override
 	public void afterAll(ExtensionContext context) throws Exception {
-		System.out.println("After all: " + context.getRequiredTestClass().getName());
+		print("After all: " + context.getRequiredTestClass().getName());
+	}
+
+	@Override
+	public void beforeTestExecution(ExtensionContext context) throws Exception {
+		print("Before test execution: " + context.getDisplayName());
+	}
+
+	@Override
+	public void afterTestExecution(ExtensionContext context) throws Exception {
+		print("After test execution : " + context.getDisplayName());
+	}
+
+	private static void print(String text) {
+		System.out.println("[" + Thread.currentThread().getName() + "] " + text);
 	}
 
 }
