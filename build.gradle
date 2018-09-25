@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.1.0.M3'
+		springBootVersion = '2.1.0.M4'
 	}
 	repositories {
 		mavenCentral()
@@ -26,8 +26,8 @@ sourceCompatibility = 10
 targetCompatibility = 10
 
 // Special syntax for overriding spring-boot-dependencies
-ext['junit-jupiter.version'] = '5.3.1'
-ext['spring.version']        = '5.1.0.RELEASE'
+// ext['junit-jupiter.version'] = '5.3.1'
+// ext['spring.version']        = '5.1.0.RELEASE'
 
 repositories {
 	mavenCentral()
