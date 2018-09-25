@@ -9,10 +9,7 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DynamicNode;
 import org.junit.jupiter.api.TestFactory;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(LoggingExtension.class)
-@ExtendWith(TimingExtension.class)
 class DynamicTests {
 
 	@TestFactory
