@@ -12,22 +12,22 @@ public class LoggingExtension
 
 	@Override
 	public void beforeAll(ExtensionContext context) throws Exception {
-		print("Before all: " + context.getRequiredTestClass().getName());
+		print("Before all : " + context.getDisplayName());
 	}
 
 	@Override
 	public void afterAll(ExtensionContext context) throws Exception {
-		print("After all: " + context.getRequiredTestClass().getName());
+		print("After all  : " + context.getDisplayName());
 	}
 
 	@Override
 	public void beforeTestExecution(ExtensionContext context) throws Exception {
-		print("Before test execution: " + context.getDisplayName());
+		print("Before test execution : " + context.getDisplayName());
 	}
 
 	@Override
 	public void afterTestExecution(ExtensionContext context) throws Exception {
-		print("After test execution : " + context.getDisplayName());
+		print("After test execution  : " + context.getDisplayName());
 	}
 
 	private static void print(String text) {
