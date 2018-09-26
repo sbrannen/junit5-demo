@@ -22,7 +22,7 @@ class ParameterizedTests {
 	//			"racecar", //
 	//			"able was I ere I saw elba"//
 	//	})
-	@MethodSource // ("candidates")
+	@MethodSource // ("palindromes")
 	void palindromes(String candidate) {
 		assertTrue(isPalindrome(candidate));
 	}
