@@ -22,8 +22,8 @@ apply plugin: 'io.spring.dependency-management'
 group = 'com.example'
 version = '1.0.0-SNAPSHOT'
 
-sourceCompatibility = 10
-targetCompatibility = 10
+sourceCompatibility = 11
+targetCompatibility = 11
 
 // Special syntax for overriding spring-boot-dependencies
 // ext['junit-jupiter.version'] = '5.3.1'
