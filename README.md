@@ -10,9 +10,9 @@ The following highlight the technologies used.
 * JUnit Jupiter 5.3.2
 * JUnit Vintage 5.3.2
   * which includes JUnit 4.12 (for comparison with JUnit Jupiter)
-* Spring Framework 5.1.3
-* Spring Boot 2.1
-* Gradle 5.0
+* Spring Framework 5.1.4
+* Spring Boot 2.1.2
+* Gradle 5.1.1
 * Java 11
 
 ## Note
