@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2017 the original author or authors.
+ * Copyright 2012-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,36 +19,27 @@ package extensions;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.allOf;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hamcrest.Matcher;
-import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
-import org.junit.jupiter.api.extension.ExtensionContext.Store;
-import org.junit.jupiter.api.extension.ParameterContext;
-import org.junit.jupiter.api.extension.ParameterResolver;
-import org.junit.platform.commons.support.ReflectionSupport;
 
 /**
  * {@code @CaptureSystemOutput} is a JUnit JUpiter extension for capturing
  * output to {@code System.out} and {@code System.err} with expectations
  * supported via Hamcrest matchers.
- * 
+ *
  * <h4>Example Usage</h4>
- * 
+ *
  * <pre style="code">
  * {@literal @}Test
  * {@literal @}CaptureSystemOutput
@@ -57,7 +48,7 @@ import org.junit.platform.commons.support.ReflectionSupport;
  *
  *     System.out.println("Printed to System.out!");
  * }
- * 
+ *
  * {@literal @}Test
  * {@literal @}CaptureSystemOutput
  * void systemErr(OutputCapture outputCapture) {
@@ -70,72 +61,26 @@ import org.junit.platform.commons.support.ReflectionSupport;
  * <p>Based on code from Spring Boot's
  * <a href="https://github.com/spring-projects/spring-boot/blob/d3c34ee3d1bfd3db4a98678c524e145ef9bca51c/spring-boot-project/spring-boot-tools/spring-boot-test-support/src/main/java/org/springframework/boot/testsupport/rule/OutputCapture.java">OutputCapture</a>
  * rule for JUnit 4 by Phillip Webb and Andy Wilkinson.
- * 
+ *
  * @author Sam Brannen
  * @author Phillip Webb
  * @author Andy Wilkinson
  */
 @Target({ TYPE, METHOD })
 @Retention(RUNTIME)
-@ExtendWith(CaptureSystemOutput.Extension.class)
+@Documented
+@ExtendWith(CaptureSystemOutputExtension.class)
 public @interface CaptureSystemOutput {
-
-	class Extension implements BeforeEachCallback, AfterEachCallback, ParameterResolver {
-
-		@Override
-		public void beforeEach(ExtensionContext context) throws Exception {
-			getOutputCapture(context).captureOutput();
-		}
-
-		@Override
-		public void afterEach(ExtensionContext context) throws Exception {
-			OutputCapture outputCapture = getOutputCapture(context);
-			try {
-				if (!outputCapture.matchers.isEmpty()) {
-					String output = outputCapture.toString();
-					assertThat(output, allOf(outputCapture.matchers));
-				}
-			}
-			finally {
-				outputCapture.releaseOutput();
-			}
-		}
-
-		@Override
-		public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) {
-			boolean isTestMethodLevel = extensionContext.getTestMethod().isPresent();
-			boolean isOutputCapture = parameterContext.getParameter().getType() == OutputCapture.class;
-			return isTestMethodLevel && isOutputCapture;
-		}
-
-		@Override
-		public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) {
-			return getOutputCapture(extensionContext);
-		}
-
-		private OutputCapture getOutputCapture(ExtensionContext context) {
-			return getOrComputeIfAbsent(getStore(context), OutputCapture.class);
-		}
-
-		private <V> V getOrComputeIfAbsent(Store store, Class<V> type) {
-			return store.getOrComputeIfAbsent(type, ReflectionSupport::newInstance, type);
-		}
-
-		private Store getStore(ExtensionContext context) {
-			return context.getStore(Namespace.create(getClass(), context.getRequiredTestMethod()));
-		}
-
-	}
 
 	/**
 	 * {@code OutputCapture} captures output to {@code System.out} and {@code System.err}.
-	 * 
+	 *
 	 * <p>To obtain an instance of {@code OutputCapture}, declare a parameter of type
 	 * {@code OutputCapture} in a JUnit Jupiter {@code @Test}, {@code @BeforeEach},
 	 * or {@code @AfterEach} method.
-	 * 
+	 *
 	 * <p>{@linkplain #expect Expectations} are supported via Hamcrest matchers.
-	 * 
+	 *
 	 * <p>To obtain all output to {@code System.out} and {@code System.err}, simply
 	 * invoke {@link #toString()}.
 	 *
@@ -145,7 +90,7 @@ public @interface CaptureSystemOutput {
 	 */
 	static class OutputCapture {
 
-		private final List<Matcher<? super String>> matchers = new ArrayList<>();
+		final List<Matcher<? super String>> matchers = new ArrayList<>();
 
 		private CaptureOutputStream captureOut;
 
