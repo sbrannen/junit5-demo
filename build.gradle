@@ -1,22 +1,11 @@
-buildscript {
-	ext {
-		springBootVersion = '2.1.3.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-		// maven { url "https://repo.spring.io/snapshot" }
-		// maven { url "https://repo.spring.io/milestone" }
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+plugins {
+	id 'org.springframework.boot' version '2.2.0.M3'
+	id 'java'
+	id 'eclipse'
+	id 'idea'
+	id 'maven'
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'maven'
-apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
@@ -25,28 +14,30 @@ version = '1.0.0-SNAPSHOT'
 sourceCompatibility = 11
 targetCompatibility = 11
 
-// Special syntax for overriding spring-boot-dependencies
-ext['junit-jupiter.version'] = '5.4.0'
-// ext['spring.version']        = '5.1.3.RELEASE'
-
 repositories {
 	mavenCentral()
 	maven { url "https://repo.spring.io/snapshot" }
 	maven { url "https://repo.spring.io/milestone" }
 }
 
+// Special syntax for overriding spring-boot-dependencies
+// ext['junit-jupiter.version'] = '5.4.2'
+// ext['spring.version']        = '5.2.0.RELEASE'
+
 dependencies {
-	compile("org.springframework.boot:spring-boot-starter")
-	// compile instead of testCompile since we implement extensions in src/main/java
-	compile("org.junit.jupiter:junit-jupiter-api")
+	implementation("org.springframework.boot:spring-boot-starter")
 
-	testCompile("org.springframework.boot:spring-boot-starter-test")
-	testCompile("org.junit.jupiter:junit-jupiter-params")
-	testCompile("org.junit.jupiter:junit-jupiter-migrationsupport")
-	testCompile("org.junit.platform:junit-platform-runner")
+	implementation("org.junit.jupiter:junit-jupiter-api") {
+		because('We implement JUnit Jupiter extensions in src/main/java')
+	}
 
-	testRuntime("org.junit.jupiter:junit-jupiter-engine")
-	testRuntime("org.junit.vintage:junit-vintage-engine")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.junit.jupiter:junit-jupiter-migrationsupport") {
+		because('To demonstrate @EnableJUnit4MigrationSupport')
+	}
+	// testImplementation("org.junit.platform:junit-platform-runner") {
+	// 	because('To demonstrate @RunWith(JUnitPlatform.class)')
+	// }
 }
 
 test {

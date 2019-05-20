@@ -6,9 +6,13 @@ import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
 
 public class LoggingExtension
 		implements BeforeAllCallback, AfterAllCallback, BeforeTestExecutionCallback, AfterTestExecutionCallback {
+
+	private static final Logger logger = LoggerFactory.getLogger(LoggingExtension.class);
 
 	@Override
 	public void beforeAll(ExtensionContext context) throws Exception {
@@ -31,7 +35,7 @@ public class LoggingExtension
 	}
 
 	private static void print(String text) {
-		System.out.println("[" + Thread.currentThread().getName() + "] " + text);
+		logger.info(() -> "[" + Thread.currentThread().getName() + "] " + text);
 	}
 
 }

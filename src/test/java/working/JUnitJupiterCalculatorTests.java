@@ -1,15 +1,17 @@
 
 package working;
 
-import static java.time.Duration.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static java.time.Duration.ofMillis;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import demo.Calculator;
 
-// @EnableRuleMigrationSupport
+// @EnableJUnit4MigrationSupport
 class JUnitJupiterCalculatorTests {
 
 	private final Calculator calculator = new Calculator();
