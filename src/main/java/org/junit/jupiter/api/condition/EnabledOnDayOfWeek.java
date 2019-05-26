@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2018 the original author or authors.
+ * Copyright 2015-2019 the original author or authors.
  *
  * All rights reserved. This program and the accompanying materials are
  * made available under the terms of the Eclipse Public License v2.0 which
@@ -32,7 +32,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 /**
- * @since 5.1
  * @see DisabledOnDayOfWeek
  * @see org.junit.jupiter.api.Disabled
  */
@@ -59,10 +58,9 @@ public @interface EnabledOnDayOfWeek {
 			}
 
 			DayOfWeek today = LocalDate.now().getDayOfWeek();
-			if (Arrays.stream(optional.get().value()).anyMatch(day -> day == today)) {
-				return enabled("Enabled on " + today);
-			}
-			return disabled("Disabled on " + today);
+			return (Arrays.stream(optional.get().value()).anyMatch(today::equals)) ?
+				enabled("Enabled on " + today) :
+				disabled("Disabled on " + today);
 		}
 
 	}
