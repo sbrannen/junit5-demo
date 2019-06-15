@@ -30,6 +30,9 @@ dependencies {
 	implementation("org.junit.jupiter:junit-jupiter-api") {
 		because('We implement JUnit Jupiter extensions in src/main/java')
 	}
+	implementation("org.hamcrest:hamcrest-library") {
+		because('We implement JUnit Jupiter extensions in src/main/java')
+	}
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.junit.jupiter:junit-jupiter-migrationsupport") {
