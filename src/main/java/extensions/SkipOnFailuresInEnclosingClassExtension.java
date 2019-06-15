@@ -19,6 +19,7 @@ package extensions;
 import static org.junit.jupiter.api.extension.ConditionEvaluationResult.disabled;
 import static org.junit.jupiter.api.extension.ConditionEvaluationResult.enabled;
 import static org.junit.platform.commons.support.AnnotationSupport.isAnnotated;
+import static org.junit.platform.commons.support.ModifierSupport.isNotStatic;
 
 import java.util.Optional;
 
@@ -29,7 +30,6 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
 import org.junit.jupiter.api.extension.ExtensionContext.Store;
 import org.junit.jupiter.api.extension.TestWatcher;
-import org.junit.platform.commons.support.ModifierSupport;
 
 /**
  * Extension that tracks whether a test failed in a test class, stores that
@@ -76,8 +76,8 @@ public class SkipOnFailuresInEnclosingClassExtension implements TestWatcher, Exe
 		return (value != null ? value : defaultValue);
 	}
 
-	private static Boolean isInnerClass(Class<?> clazz) {
-		return ModifierSupport.isNotStatic(clazz) && clazz.isMemberClass();
+	private static boolean isInnerClass(Class<?> clazz) {
+		return isNotStatic(clazz) && clazz.isMemberClass();
 	}
 
 	@Override
