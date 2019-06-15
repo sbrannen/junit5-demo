@@ -17,4 +17,4 @@ The following highlight the technologies used.
 
 ## Note
 
-Two of the tests intentionally fail in order to demonstrate support for `assertAll()` (i.e., _grouped assertions_) in JUnit Jupiter vs. the lacking support for grouped assertions in JUnit 4.
+Some of the tests intentionally fail in order to demonstrate support for `assertAll()` (i.e., _grouped assertions_) in JUnit Jupiter vs. the lacking support for grouped assertions in JUnit 4. Additional tests intentionally fail to demonstrate the functionality of the `@SkipOnFailuresInEnclosingClass` extension.
