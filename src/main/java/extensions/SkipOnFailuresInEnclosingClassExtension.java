@@ -54,24 +54,19 @@ public class SkipOnFailuresInEnclosingClassExtension implements TestWatcher, Exe
 		Class<?> testClass = context.getRequiredTestClass();
 
 		if (isInnerClass(testClass) && isAnnotated(testClass, SkipOnFailuresInEnclosingClass.class)) {
-			Store store = getStore(context);
 			String enclosingClassName = testClass.getEnclosingClass().getName();
-			boolean failureRecordedInEnclosingClass = getOrElse(store, enclosingClassName, boolean.class, false);
-			if (failureRecordedInEnclosingClass) {
+			boolean failureInEnclosingClass = getStore(context).getOrDefault(enclosingClassName, boolean.class, false);
+			if (failureInEnclosingClass) {
 				return disabled("Failures detected in enclosing test class: " + enclosingClassName);
 			}
+			return enabled("No failures detected in enclosing test class: " + enclosingClassName);
 		}
 
-		return enabled("No failing tests in enclosing class");
+		return enabled(testClass.getName() + " is not a @SkipOnFailuresInEnclosingClass candidate");
 	}
 
 	private Store getStore(ExtensionContext context) {
 		return context.getRoot().getStore(Namespace.create(getClass()));
-	}
-
-	private <V> V getOrElse(Store store, Object key, Class<V> requiredType, V defaultValue) {
-		V value = store.get(key, requiredType);
-		return (value != null ? value : defaultValue);
 	}
 
 	private static boolean isInnerClass(Class<?> clazz) {
