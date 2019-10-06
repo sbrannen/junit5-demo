@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.0.M3'
+	id 'org.springframework.boot' version '2.2.0.RC1'
 	id 'java'
 	id 'eclipse'
 	id 'idea'
@@ -21,7 +21,7 @@ repositories {
 }
 
 // Special syntax for overriding spring-boot-dependencies
-// ext['junit-jupiter.version'] = '5.4.2'
+// ext['junit-jupiter.version'] = '5.5.2'
 // ext['spring.version']        = '5.2.0.RELEASE'
 
 dependencies {

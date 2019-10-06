@@ -21,8 +21,6 @@ import static org.junit.jupiter.api.extension.ConditionEvaluationResult.enabled;
 import static org.junit.platform.commons.support.AnnotationSupport.isAnnotated;
 import static org.junit.platform.commons.support.ModifierSupport.isNotStatic;
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.extension.ConditionEvaluationResult;
 import org.junit.jupiter.api.extension.ExecutionCondition;
@@ -78,21 +76,6 @@ public class SkipOnFailuresInEnclosingClassExtension implements TestWatcher, Exe
 
 	private static boolean isInnerClass(Class<?> clazz) {
 		return isNotStatic(clazz) && clazz.isMemberClass();
-	}
-
-	@Override
-	public void testDisabled(ExtensionContext context, Optional<String> reason) {
-		// ignored event
-	}
-
-	@Override
-	public void testSuccessful(ExtensionContext context) {
-		// ignored event
-	}
-
-	@Override
-	public void testAborted(ExtensionContext context, Throwable cause) {
-		// ignored event
 	}
 
 }
