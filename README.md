@@ -4,16 +4,16 @@ This is a sample application that demonstrates the core features of JUnit 5, esp
 
 In addition, demos are provided for using the _Spring TestContext Framework_ from the Spring Framework as well as testing support in Spring Boot.
 
-The following highlight the technologies used.
+The following technologies are used.
 
-* JUnit Platform 1.4.2
-* JUnit Jupiter 5.4.2
-* JUnit Vintage 5.4.2
+* JUnit Platform 1.5.2
+* JUnit Jupiter 5.5.2
+* JUnit Vintage 5.5.2
   * which includes JUnit 4.12 (for comparison with JUnit Jupiter)
-* Spring Framework 5.2 M2
-* Spring Boot 2.2 M3
-* Gradle 5.5
-* Java 11
+* Spring Framework 5.2 GA
+* Spring Boot 2.2 RC1
+* Gradle 5.6.2
+* Java 12
 
 ## Note
 
