@@ -55,7 +55,7 @@ public class SkipOnFailuresInEnclosingClassExtension implements TestWatcher, Exe
 
 		if (isInnerClass(testClass) && isAnnotated(testClass, SkipOnFailuresInEnclosingClass.class)) {
 			Store store = getStore(context);
-			String enclosingClassName = testClass.getDeclaringClass().getName();
+			String enclosingClassName = testClass.getEnclosingClass().getName();
 			boolean failureRecordedInEnclosingClass = getOrElse(store, enclosingClassName, boolean.class, false);
 			if (failureRecordedInEnclosingClass) {
 				return disabled("Failures detected in enclosing test class: " + enclosingClassName);
